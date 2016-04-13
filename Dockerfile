@@ -97,5 +97,5 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 EXPOSE 443
 EXPOSE 80
 
-CMD /usr/local/sbin/httpd -DFOREGROUND
+CMD /usr/local/apache2/bin/httpd -DFOREGROUND
 

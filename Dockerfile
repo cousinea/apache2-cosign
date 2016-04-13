@@ -87,7 +87,7 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 	&& ./configure -with-apxs=/usr/local/apache2/bin/apxs \
 	&& make \
 	&& make install \
-	&& rm -r src/mod_jk \
+#	&& rm -r src/mod_jk \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 CMD cp /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf

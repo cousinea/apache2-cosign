@@ -90,9 +90,9 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 #	&& rm -r src/mod_jk \
 	&& apt-get purge -y --auto-remove $buildDeps
 
-CMD cp /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf
-CMD cp /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf
-CMD cp /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties
+#CMD cp /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf
+#CMD cp /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf
+#CMD cp /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties
 
 EXPOSE 443
 EXPOSE 80

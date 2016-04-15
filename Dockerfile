@@ -90,7 +90,7 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 #	&& rm -r src/mod_jk \
 	&& apt-get purge -y --auto-remove $buildDeps
 	
-COPY . .
+COPY start.sh /usr/local/apache2/bin/
 
 EXPOSE 443
 EXPOSE 80

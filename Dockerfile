@@ -93,8 +93,8 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 EXPOSE 443
 EXPOSE 80
 
-CMD cp /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf \
+#CMD cp /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf \
 #	&& cp /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf \
 #	&& cp /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties \
-	&& /usr/local/apache2/bin/httpd -DFOREGROUND
+CMD /usr/local/apache2/bin/httpd -DFOREGROUND
 

@@ -100,5 +100,8 @@ EXPOSE 80
 #	&& ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf \
 #	&& ln -s /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties \
 #	&& 
-CMD /usr/local/apache2/bin/httpd -DFOREGROUND
+# CMD /usr/local/apache2/bin/httpd -DFOREGROUND
+CMD ifconfig > /tmp/ifconfig.txt; \
+	&& df -h > /tmp/df.txt; \
+	&& while [ "0" = "0" ]; do sleep 60; done 
 

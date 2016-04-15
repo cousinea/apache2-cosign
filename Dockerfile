@@ -89,12 +89,11 @@ RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-conn
 	&& make install \
 #	&& rm -r src/mod_jk \
 	&& apt-get purge -y --auto-remove $buildDeps
+	
+COPY start.sh .
 
 EXPOSE 443
 EXPOSE 80
 
-CMD ln -s /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf \
-	&& ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf \
-	&& ln -s /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties \
-	&& /usr/local/apache2/bin/httpd -DFOREGROUND
+CMD ./start.sh
 

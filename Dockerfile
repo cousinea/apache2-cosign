@@ -27,7 +27,7 @@ RUN apt-get update \
 # see https://httpd.apache.org/download.cgi#verify
 RUN gpg --keyserver ha.pool.sks-keyservers.net --recv-keys A93D62ECC3C8EA12DB220EC934EA76E6791485A8
 
-ENV HTTPD_VERSION 2.4.18
+ENV HTTPD_VERSION 2.4.25
 ENV HTTPD_BZ2_URL https://www.apache.org/dist/httpd/httpd-$HTTPD_VERSION.tar.bz2
 
 ###### BUILD APACHE #####
@@ -79,10 +79,10 @@ RUN wget "$COSIGN_URL" \
 ##### BUILD mod_jk #######
 WORKDIR $HTTPD_PREFIX
 
-RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.41-src.tar.gz \
+RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.42-src.tar.gz \
 	&& mkdir -p src/mod_jk \
-	&& tar -xvf tomcat-connectors-1.2.41-src.tar.gz -C src/mod_jk --strip-components=1 \
-	&& rm tomcat-connectors-1.2.41-src.tar.gz \
+	&& tar -xvf tomcat-connectors-1.2.42-src.tar.gz -C src/mod_jk --strip-components=1 \
+	&& rm tomcat-connectors-1.2.42-src.tar.gz \
 	&& cd src/mod_jk/native \
 	&& ./configure -with-apxs=/usr/local/apache2/bin/apxs \
 	&& make \

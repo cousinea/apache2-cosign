@@ -22,8 +22,6 @@ RUN apt-get update \
 		libpcre++0 \
 		libssl1.0.0 \
 		libldap-2.4-2 \
-		git \
-		autoconf \
 	&& rm -r /var/lib/apt/lists/*
 
 # see https://httpd.apache.org/download.cgi#verify

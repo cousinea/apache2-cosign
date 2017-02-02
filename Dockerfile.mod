@@ -62,42 +62,35 @@ RUN buildDeps=' \
 
 ###### BUILD COSIGN #####
 WORKDIR $HTTPD_PREFIX
-ENV COSIGN_VERSION 3.2.0
-ENV COSIGN_URL http://downloads.sourceforge.net/project/cosign/cosign/cosign-3.2.0/cosign-3.2.0.tar.gz
+#ENV COSIGN_VERSION 3.2.0
+#ENV COSIGN_URL #http://downloads.sourceforge.net/project/cosign/cosign/cosign-3.2.0/cosign-3.2.0.tar.gz
 ENV CPPFLAGS="-I/usr/kerberos/include"
 
-RUN wget "$COSIGN_URL" \
-	&& mkdir -p src/cosign \
-	&& tar -xvf cosign-3.2.0.tar.gz -C src/cosign --strip-components=1 \
-	&& rm cosign-3.2.0.tar.gz \
-	&& cd src/cosign \
-	&& ./configure --enable-apache2=/usr/local/apache2/bin/apxs \
-	&& sed -i 's/remote_ip/client_ip/g' ./filters/apache2/mod_cosign.c \
-	&& make \
-	&& make install \
-	&& cd ../../ \
-	&& rm -r src/cosign
+#RUN wget "$COSIGN_URL" \
+RUN cd ./src \
+	&& git clone -b cosign-3.2.1rc1 http://github.com/umich-iam/cosign
+	
+WORKDIR /usr/local/apache2/src/cosign
+#	&& cd ./cosign
+#	&& tar -xvf cosign-3.2.0.tar.gz -C src/cosign --strip-components=1 \
+#	&& rm cosign-3.2.0.tar.gz \
+#	&& cd src/cosign \
 
-##### BUILD mod_jk #######
-#WORKDIR $HTTPD_PREFIX
-# Not needed unless communicating with tomcat via AJP.
-#RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.42-src.tar.gz \
-#	&& mkdir -p src/mod_jk \
-#	&& tar -xvf tomcat-connectors-1.2.42-src.tar.gz -C src/mod_jk --strip-components=1 \
-#	&& rm tomcat-connectors-1.2.42-src.tar.gz \
-#	&& cd src/mod_jk/native \
-#	&& ./configure -with-apxs=/usr/local/apache2/bin/apxs \
+RUN apt-get install -y libtool-bin automake
+
+RUN libtoolize --force
+RUN aclocal
+#RUN ls
+RUN autoheader #configure.ac
+RUN automake --force-missing --add-missing
+RUN autoconf
+
+#RUN ./cosign/libcgi/configure --enable-apache2=/usr/local/apache2/bin/apxs \
+#	&& sed -i 's/remote_ip/client_ip/g' ./filters/apache2/mod_cosign.c \
 #	&& make \
 #	&& make install \
-#	&& rm -r src/mod_jk \
-#	&& apt-get purge -y --auto-remove $buildDeps
-	
-#COPY start.sh /usr/local/apache2/bin/
+#	&& cd ../../ \
+#	&& rm -r src/cosign
 
-EXPOSE 443
-EXPOSE 80
-#CMD ./start.sh
-
-CMD rm /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf; /usr/local/apache2/bin/httpd -DFOREGROUND
-# CMD ifconfig > /tmp/ifconfig.txt; df -h > /tmp/df.txt; while [ "0" = "0" ]; do sleep 60; done 
+CMD /bin/bash
 

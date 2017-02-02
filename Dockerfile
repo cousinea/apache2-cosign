@@ -98,6 +98,6 @@ EXPOSE 80
 
 RUN mkdir -p /var/cosign/filter
 
-CMD rm /usr/local/apache2/conf/httpd.conf ; ln -s /usr/local/apache2/local/conf/httpd.conf /usr/local/apache2/conf/httpd.conf ; ln -s /usr/local/apache2/local/conf/extra/httpd-cosign.conf /usr/local/apache2/conf/extra/httpd-cosign.conf; /usr/local/apache2/bin/httpd -DFOREGROUND
+CMD rm /usr/local/apache2/conf/httpd.conf; ln -s /usr/local/apache2/local/conf/httpd.conf /usr/local/apache2/conf/httpd.conf; ln -s /usr/local/apache2/local/conf/httpd-cosign.conf /usr/local/apache2/conf/extra/httpd-cosign.conf; /usr/local/apache2/bin/httpd -DFOREGROUND
 # CMD ifconfig > /tmp/ifconfig.txt; df -h > /tmp/df.txt; while [ "0" = "0" ]; do sleep 60; done 
 

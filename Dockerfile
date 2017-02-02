@@ -96,6 +96,6 @@ EXPOSE 443
 EXPOSE 80
 #CMD ./start.sh
 
-CMD rm /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf; ln -s /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties; /usr/local/apache2/bin/httpd -DFOREGROUND
+#CMD rm /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf ; ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf; ln -s /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties; /usr/local/apache2/bin/httpd -DFOREGROUND
 # CMD ifconfig > /tmp/ifconfig.txt; df -h > /tmp/df.txt; while [ "0" = "0" ]; do sleep 60; done 
-
+CMD /bin/bash

@@ -1,9 +1,8 @@
 #!/bin/sh
+rm /usr/local/apache2/conf/httpd.conf
 
-ln -s /usr/share/properties/httpd.conf /usr/local/apache2/conf/httpd.conf
+ln -s /usr/local/apache2/local/conf/httpd.conf /usr/local/apache2/conf/httpd.conf
 
-ln -s /usr/share/properties/cosign.conf /usr/local/apache2/conf/cosign.conf
-
-ln -s /usr/share/properties/workers.properties /usr/local/apache2/conf/workers.properties
+ln -s /usr/local/apache2/local/conf/httpd-cosign.conf /usr/local/apache2/conf/extra/httpd-cosign.conf
 
 /usr/local/apache2/bin/httpd -DFOREGROUND

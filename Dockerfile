@@ -32,15 +32,15 @@ RUN wget "$COSIGN_URL" \
 #	&& ./configure -with-apxs=/usr/local/apache2/bin/apxs \
 #	&& make \
 #	&& make install \
-#	&& rm -r src/mod_jk \
-#	&& apt-get purge -y --auto-remove $buildDeps
+#	&& rm -r src/mod_jk
 
 RUN apt-get remove -y make wget \
 	&& apt-get autoremove -y
+
+EXPOSE 443
+EXPOSE 80
 	
 COPY start.sh .
 RUN chmod +x start.sh
 
-EXPOSE 443
-EXPOSE 80
 CMD /usr/local/apache2/start.sh

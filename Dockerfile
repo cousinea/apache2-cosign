@@ -21,12 +21,9 @@ RUN wget "$COSIGN_URL" \
 	&& make install \
 	&& cd ../../ \
 	&& rm -r src/cosign
-	
-RUN apt-get remove -y make wget
 
-##### BUILD mod_jk #######
-#WORKDIR $HTTPD_PREFIX
 # Not needed unless communicating with tomcat via AJP.
+##### BUILD mod_jk #######
 #RUN wget http://mirrors.koehn.com/apache/tomcat/tomcat-connectors/jk/tomcat-connectors-1.2.42-src.tar.gz \
 #	&& mkdir -p src/mod_jk \
 #	&& tar -xvf tomcat-connectors-1.2.42-src.tar.gz -C src/mod_jk --strip-components=1 \
@@ -37,6 +34,9 @@ RUN apt-get remove -y make wget
 #	&& make install \
 #	&& rm -r src/mod_jk \
 #	&& apt-get purge -y --auto-remove $buildDeps
+
+RUN apt-get remove -y make wget \
+	&& apt-get autoremove -y
 	
 COPY start.sh .
 RUN chmod +x start.sh

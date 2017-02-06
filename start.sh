@@ -1,5 +1,4 @@
 #!/bin/sh
-#rm /usr/local/apache2/conf/httpd.conf
 
 # link configuration files for apache and cosign
 # from volume from preloaded secret.

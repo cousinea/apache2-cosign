@@ -42,7 +42,7 @@ RUN apt-get remove -y make wget \
 	&& apt-get autoremove -y
 
 EXPOSE 443
-EXPOSE 80
+#EXPOSE 80
 
 ### Start script incorporates config files and sends logs to stdout ###
 COPY start.sh .

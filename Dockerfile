@@ -22,7 +22,7 @@ RUN wget "$COSIGN_URL" \
 	&& cd ../../ \
 	&& rm -r src/cosign \
 	&& mkdir -p /var/cosign/filter \
-	&& chmod g+w /var/cosign/filter
+	&& chmod 777 /var/cosign/filter
 	
 
 ### Not needed unless communicating with tomcat via AJP ###
@@ -40,7 +40,6 @@ RUN wget "$COSIGN_URL" \
 ### Remove pre-reqs ###
 RUN apt-get remove -y make wget \
 	&& apt-get autoremove -y
-
 
 EXPOSE 443
 EXPOSE 80

@@ -7,7 +7,7 @@ ENV CPPFLAGS="-I/usr/kerberos/include"
 ENV OPENSSL_VERSION 1.0.2k-1~bpo8+1
 
 RUN apt-get update \
-	&& apt-get install -y wget gcc libssl-dev=$OPENSSL_VERSION make
+	&& apt-get install -y wget gcc libssl-dev=$OPENSSL_VERSION make openssl
 
 ### Build Cosign ###
 RUN wget "$COSIGN_URL" \
@@ -20,7 +20,9 @@ RUN wget "$COSIGN_URL" \
 	&& make \
 	&& make install \
 	&& cd ../../ \
-	&& rm -r src/cosign
+	&& rm -r src/cosign \
+	&& mkdir -p /var/cosign/filter
+	
 
 ### Not needed unless communicating with tomcat via AJP ###
 ### Build mod_jk ###
@@ -37,6 +39,7 @@ RUN wget "$COSIGN_URL" \
 ### Remove pre-reqs ###
 RUN apt-get remove -y make wget \
 	&& apt-get autoremove -y
+
 
 EXPOSE 443
 EXPOSE 80

@@ -6,6 +6,7 @@ ln -sf /usr/local/apache2/local/conf/httpd.conf /usr/local/apache2/conf/httpd.co
 ln -s /usr/local/apache2/local/conf/httpd-cosign.conf /usr/local/apache2/conf/extra/httpd-cosign.conf
 
 # copy certs from secret volume to a location that can be written to.
+mkdir /usr/local/apache2/certs/
 cp /usr/local/apache2/local/certs/* /usr/local/apache2/certs/
 
 # Rehash command needs to be run before starting apache.

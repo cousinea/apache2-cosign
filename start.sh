@@ -4,7 +4,7 @@
 # from volume from preloaded secret.
 ln -sf /usr/local/apache2/local/conf/httpd.conf /usr/local/apache2/conf/httpd.conf
 ln -s /usr/local/apache2/local/conf/httpd-cosign.conf /usr/local/apache2/conf/extra/httpd-cosign.conf
-ln -s /usr/local/apache2/local/conf/httpd-ssl.conf /usr/local/apache2/conf/extra/httpd-ssl.conf
+ln -sf /usr/local/apache2/local/conf/httpd-ssl.conf /usr/local/apache2/conf/extra/httpd-ssl.conf
 
 # copy certs from secret volume to a location that can be written to.
 mkdir /usr/local/apache2/certs/

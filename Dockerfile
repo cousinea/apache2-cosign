@@ -22,7 +22,8 @@ RUN wget "$COSIGN_URL" \
 	&& cd ../../ \
 	&& rm -r src/cosign \
 	&& mkdir -p /var/cosign/filter /var/cosign/proxy \
-	&& chmod 777 /var/cosign/filter /var/cosign/proxy
+	&& chmod 777 /var/cosign/filter /var/cosign/proxy \
+	&& chown daemon:daemon /var/cosign/filter /var/cosign/proxy
 	
 
 ### Not needed unless communicating with tomcat via AJP ###

@@ -4,7 +4,7 @@ FROM httpd:2.4
 WORKDIR /usr/local/apache2
 ENV COSIGN_URL http://downloads.sourceforge.net/project/cosign/cosign/cosign-3.2.0/cosign-3.2.0.tar.gz
 ENV CPPFLAGS="-I/usr/kerberos/include"
-ENV OPENSSL_VERSION 1.0.2k-1~bpo8+1
+ENV OPENSSL_VERSION 1.0.2l-1~bpo8+1
 
 RUN apt-get update \
 	&& apt-get install -y wget gcc libssl-dev=$OPENSSL_VERSION make openssl

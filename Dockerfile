@@ -1,4 +1,5 @@
-FROM httpd:2.4.25
+#FROM httpd:2.4.25
+FROM httpd:2.4
 
 ### Cosign Pre-requisites ###
 WORKDIR /usr/local/apache2
